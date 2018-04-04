@@ -1,10 +1,10 @@
 <template>
   <div class='list_entry' :class='dynamicListEntryClasses'>
     <div class='image_container'>
-      <a :href='entry_url'<img class='image' :src='picture'></a>
+      <router-link :to='entry_url'><img class='image' :src='picture'></router-link>
     </div>
     <template v-if='restaurant_url'>
-      <p class='title'>{{ entry_name }} <a class='website' :href='restaurant_url'>@{{ restaurant_name }}</a></p>
+      <p class='title'>{{ entry_name }} <a class='website' target='_blank' :href='restaurant_url'>@{{ restaurant_name }}</a></p>
     </template>
     <template v-else>
       <p class='title'>{{ entry_name }} @{{ restaurant_name }}</p>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import VueRouter from 'vue-router';
+
 export default {
   name: 'ListEntry',
   props: {

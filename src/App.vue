@@ -16,10 +16,12 @@
         </template>
       </div>
     </div>
+    <router-view/>
   </div>
 </template>
 
 <script>
+import VueRouter from 'vue-router';
 import ListEntry from './components/ListEntry';
 
 export default {
@@ -30,8 +32,7 @@ export default {
   data () {
     return {
       nextPage: 1,
-      entries: [],
-      currentEntry: null
+      entries: []
     }
   },
   methods: {

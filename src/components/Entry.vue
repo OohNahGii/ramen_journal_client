@@ -3,12 +3,12 @@
   <div class='overlay'>
     <div class='overlay_content'>
       <div class='header'>
-        <h1>{{ entry_name }}</h1>
-        <template v-if='restaurant_url'>
-          <h3><a :href='restaurant_url'>@{{ restaurant_name }}</a> in {{ city }}, {{ state }} on {{ entry_date }}</h3>
+        <h1>{{ entryName }}</h1>
+        <template v-if='restaurantUrl'>
+          <h3><a target='_blank' :href='restaurantUrl'>@{{ restaurantName }}</a> in {{ city }}, {{ state }} on {{ entryDate }}</h3>
         </template>
         <template v-else>
-          <h3>@{{ restaurant_name }} in {{ city }}, {{ state }} on {{ entry_date }}</h3>
+          <h3>@{{ restaurantName }} in {{ city }}, {{ state }} on {{ entryDate }}</h3>
         </template>
       </div>
       <div class='description_container'>
@@ -18,10 +18,10 @@
           </div>
         </div>
         <div class='description_column'>
-          <Rating :rating='this.rating'></Rating>
-          <p><strong>Broth ({{ broth_rating }}):</strong> {{ broth }}</p>
-          <p><strong>Noodles ({{ noodles_rating }}):</strong> {{ noodles }}</p>
-          <p><strong>Toppings ({{ toppings_rating }}):</strong> {{ toppings }}</p>
+          <Rating :rating='rating'></Rating>
+          <p><strong>Broth ({{ brothRating }}):</strong> {{ broth }}</p>
+          <p><strong>Noodles ({{ noodlesRating }}):</strong> {{ noodles }}</p>
+          <p><strong>Toppings ({{ toppingsRating }}):</strong> {{ toppings }}</p>
         </div>
       </div>
       <div class='notes'>
@@ -34,68 +34,88 @@
 <script>
 import Rating from './Rating';
 
+const baseUrl = 'http://localhost:3000/entries/';
+
 export default {
   name: 'Entry',
-  props: {
-    entry_name: {
-      type: String,
-      required: true
+  components: {
+    Rating
+  },
+  data() {
+    return {
+      entryName: null,
+      restaurantName: null,
+      restaurantUrl: null,
+      city: null,
+      state: null,
+      entryDate: null,
+      picture: null,
+      rating: null,
+      broth: null,
+      brothRating: null,
+      noodles: null,
+      noodlesRating: null,
+      toppings: null,
+      toppingsRating: null,
+      notes: null
+    }
+  },
+  beforeRouteEnter(to, from, next) {
+    const url = baseUrl + to.params.id;
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        next(vm => vm.setData(json));
+      });
+  },
+  beforeRouteUpdate(to, from, next) {
+    const url = baseUrl + to.params.id;
+    clearData();
+    fetchh(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(json => {
+        this.setData(json);
+        next();
+      });
+  },
+  methods: {
+    setData(json) {
+      this.entryName = json.entry_name;
+      this.restaurantName = json.restaurant_name;
+      this.restaurantUrl = json.restaurant_url;
+      this.city = json.city;
+      this.state = json.state;
+      this.entryDate = json.entry_date;
+      this.picture = json.picture;
+      this.rating = json.rating;
+      this.broth = json.broth;
+      this.brothRating = json.broth_rating;
+      this.noodles = json.noodles;
+      this.noodlesRating = json.noodles_rating;
+      this.toppings = json.toppings;
+      this.toppingsRating = json.toppings_rating;
+      this.notes = json.notes;
     },
-    restaurant_name: {
-      type: String,
-      required: true
-    },
-    restaurant_url: {
-      type: String,
-      default: null
-    },
-    city: {
-      type: String,
-      required: true
-    },
-    state: {
-      type: String,
-      required: true
-    },
-    entry_date: {
-      type: String,
-      required: true
-    },
-    picture: {
-      type: String,
-      required: true
-    },
-    rating: {
-      type: Number,
-      required: true
-    },
-    broth: {
-      type: String,
-      required: true
-    },
-    broth_rating: {
-      type: Number,
-      required: true
-    },
-    noodles: {
-      type: String,
-      required: true
-    },
-    noodles_rating: {
-      type: Number,
-      required: true
-    },
-    broth: {
-      type: String,
-      required: true
-    },
-    broth_rating: {
-      type: Number,
-      required: true
-    },
-    notes: {
-      type: String,
-      required: true
+    clearData() {
+      this.entryName = null;
+      this.restaurantName = null;
+      this.restaurantUrl = null;
+      this.city = null;
+      this.state = null;
+      this.entryDate = null;
+      this.picture = null;
+      this.rating = null;
+      this.broth = null;
+      this.brothRating = null;
+      this.noodles = null;
+      this.noodlesRating = null;
+      this.toppings = null;
+      this.toppingsRating = null;
+      this.notes = null;
     }
   }
 }
@@ -136,7 +156,7 @@ export default {
           background-color: #FFFFFF;
           height: 340px;
           padding: 20px;
-          width: 440px
+          width: 440px;
 
           .image {
             height: 300px;
