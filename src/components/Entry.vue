@@ -1,6 +1,7 @@
 <template>
-  <!-- TODO handle navigation (left, right, X) -->
+  <!-- TODO handle navigation (left, right) -->
   <div class='overlay'>
+    <Close></Close>
     <div class='overlay_content'>
       <div class='header'>
         <h1>{{ entryName }}</h1>
@@ -32,6 +33,7 @@
 </template>
 
 <script>
+import Close from './Close';
 import Rating from './Rating';
 
 const baseUrl = 'http://localhost:3000/entries/';
@@ -39,6 +41,7 @@ const baseUrl = 'http://localhost:3000/entries/';
 export default {
   name: 'Entry',
   components: {
+    Close,
     Rating
   },
   data() {
@@ -134,6 +137,11 @@ export default {
   width: 100%;
   z-index: 2;
 
+  .close {
+    height: 40px;
+    width: 40px;
+  }
+
   .overlay_content {
     background-color: #EDEDED;
     border-radius: 6px;
@@ -181,6 +189,7 @@ export default {
 }
 
 // TODO - adjust this media query
+// Note: this currently isn't working on mobile
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
   .overlay_content {
     border-radius: 0;
