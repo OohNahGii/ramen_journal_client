@@ -1,7 +1,7 @@
 <template>
   <!-- TODO handle navigation (left, right) -->
   <div class='overlay'>
-    <Close></Close>
+    <Close/>
     <div class='overlay_content'>
       <div class='header'>
         <h1>{{ entryName }}</h1>
@@ -137,11 +137,6 @@ export default {
   width: 100%;
   z-index: 2;
 
-  .close {
-    height: 40px;
-    width: 40px;
-  }
-
   .overlay_content {
     background-color: #EDEDED;
     border-radius: 6px;
@@ -189,9 +184,8 @@ export default {
 }
 
 // TODO - adjust this media query
-// Note: this currently isn't working on mobile
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
-  .overlay_content {
+  .overlay .overlay_content {
     border-radius: 0;
     margin: 0;
     padding: 3.5%;

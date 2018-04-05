@@ -12,6 +12,7 @@
   position: absolute;
   right: 20px;
   top: 20px;
+  z-index: 3;
 
   #close-icon {
     clip-rule: evenodd;
@@ -19,14 +20,21 @@
     height: 40px;
     stroke-linecap: round;
     stroke-linejoin: round;
-    stroke-miterlimit: 3;
+    stroke-miterlimit: 1.5;
     width: 40px;
 
     path {
       fill: none;
-      stroke: #EDEDED;
-      stroke-width: 3px;
+      stroke: #AAAAAA;
+      stroke-width: 4px;
     }
+  }
+}
+
+@media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
+  #close {
+    right: 10px;
+    top: 10px;
   }
 }
 </style>
