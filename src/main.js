@@ -19,13 +19,13 @@ const store = new Vuex.Store({
   },
   getters: {
     getPrevEntryId: state => {
-      if (state.currentIndex && state.entries.length && state.currentIndex - 1 >= 0) {
+      if (!isNaN(state.currentIndex) && state.entries.length && state.currentIndex - 1 >= 0) {
         return state.entries[state.currentIndex - 1].entry_id;
       }
       return null;
     },
     getNextEntryId: state => {
-      if (state.currentIndex && state.entries.length && state.currentIndex + 1 <= state.entries.length) {
+      if (!isNaN(state.currentIndex) && state.entries.length && state.currentIndex + 1 <= state.entries.length) {
         return state.entries[state.currentIndex + 1].entry_id;
       }
       return null;

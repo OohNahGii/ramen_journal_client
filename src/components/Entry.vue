@@ -75,11 +75,11 @@ export default {
   computed: {
     prevEntryUrl() {
       const prevEntryId = this.$store.getters.getPrevEntryId;
-      return prevEntryId ? '/' + prevEntryId : null;
+      return prevEntryId == null ? null : '/' + prevEntryId;
     },
     nextEntryUrl() {
       const nextEntryId = this.$store.getters.getNextEntryId;
-      return nextEntryId ? '/' + nextEntryId : null;
+      return nextEntryId == null ? null : '/' + nextEntryId;
     }
   },
   beforeRouteEnter(to, from, next) {

@@ -20,7 +20,6 @@ export default {
 
 <style lang='scss'>
 #prev {
-  position: absolute;
   z-index: 3;
 
   #prev-icon {

@@ -20,8 +20,6 @@ export default {
 
 <style lang='scss'>
 #next {
-  position: absolute;
-  left: 40px;
   z-index: 3;
 
   #next-icon {
