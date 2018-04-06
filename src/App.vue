@@ -31,18 +31,22 @@ export default {
   },
   data () {
     return {
-      nextPage: 1,
-      entries: []
+      nextPage: 1
+    }
+  },
+  computed: {
+    entries() {
+      return this.$store.state.entries;
     }
   },
   methods: {
     fetchNextPage() {
       fetch('http://localhost:3000/entries?page=' + this.nextPage)
-        .then((response) => {
+        .then(response => {
           return response.json()
         })
-        .then((json) => {
-          this.entries = this.entries.concat(json);
+        .then(json => {
+          this.$store.commit('addEntries', json);
           this.nextPage = this.nextPage + 1;
         });
     }

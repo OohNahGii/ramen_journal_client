@@ -1,7 +1,9 @@
 <template>
-  <!-- TODO handle navigation (left, right) -->
   <div class='overlay'>
     <Close/>
+    <template v-if='prevEntryUrl'>
+      <Prev :prevEntryUrl='prevEntryUrl'/>
+    </template>  
     <div class='overlay_content'>
       <div class='header'>
         <h1>{{ entryName }}</h1>
@@ -29,11 +31,16 @@
         <p>{{ notes }}</p>
       </div>
     </div>
+    <template v-if='nextEntryUrl'> 
+      <Next :nextEntryUrl='nextEntryUrl'/>
+    </template>
   </div>
 </template>
 
 <script>
 import Close from './Close';
+import Next from './Next';
+import Prev from './Prev';
 import Rating from './Rating';
 
 const baseUrl = 'http://localhost:3000/entries/';
@@ -42,6 +49,8 @@ export default {
   name: 'Entry',
   components: {
     Close,
+    Next,
+    Prev,
     Rating
   },
   data() {
@@ -63,24 +72,40 @@ export default {
       notes: null
     }
   },
+  computed: {
+    prevEntryUrl() {
+      const prevEntryId = this.$store.getters.getPrevEntryId;
+      return prevEntryId ? '/' + prevEntryId : null;
+    },
+    nextEntryUrl() {
+      const nextEntryId = this.$store.getters.getNextEntryId;
+      return nextEntryId ? '/' + nextEntryId : null;
+    }
+  },
   beforeRouteEnter(to, from, next) {
-    const url = baseUrl + to.params.id;
+    const entryId = to.params.id;
+    const url = baseUrl + entryId;
     fetch(url)
       .then(response => {
         return response.json();
       })
       .then(json => {
-        next(vm => vm.setData(json));
+        next(vm => {
+          vm.$store.commit('setCurrentIndexByEntryId', entryId);
+          vm.setData(json);
+        });
       });
   },
   beforeRouteUpdate(to, from, next) {
-    const url = baseUrl + to.params.id;
-    clearData();
-    fetchh(url)
+    const entryId = to.params.id;
+    const url = baseUrl + entryId;
+    this.clearData();
+    fetch(url)
       .then(response => {
         return response.json();
       })
       .then(json => {
+        this.$store.commit('setCurrentIndexByEntryId', entryId);
         this.setData(json);
         next();
       });
