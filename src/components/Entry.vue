@@ -29,7 +29,9 @@
           </div>
         </div>
         <div class='notes'>
-          <p>{{ notes }}</p>
+          <p v-for='note in notes'>
+            {{ note }}
+          </p>
         </div>
       </div>
       <template v-if='nextEntryUrl'> 

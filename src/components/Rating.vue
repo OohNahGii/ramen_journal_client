@@ -29,7 +29,7 @@ export default {
       } else if (remainder > 1) {
         return 100;
       } else {
-        return  Math.ceil((remainder * 100) / 10) * 10;
+        return Math.ceil((remainder * 100) / 10) * 10;
       }
     }
   }
