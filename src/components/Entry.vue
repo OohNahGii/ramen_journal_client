@@ -1,39 +1,41 @@
 <template>
   <div class='overlay'>
     <Close/>
-    <template v-if='prevEntryUrl'>
-      <Prev :prevEntryUrl='prevEntryUrl'/>
-    </template>  
-    <div class='entry'>
-      <div class='header'>
-        <h1>{{ entryName }}</h1>
-        <template v-if='restaurantUrl'>
-          <h3><a target='_blank' :href='restaurantUrl'>@{{ restaurantName }}</a> in {{ city }}, {{ state }} on {{ entryDate }}</h3>
-        </template>
-        <template v-else>
-          <h3>@{{ restaurantName }} in {{ city }}, {{ state }} on {{ entryDate }}</h3>
-        </template>
-      </div>
-      <div class='description-container'>
-        <div class='image-column'>
-          <div class='image-container'>
-            <img class='image' :src='picture'>
+    <div class='entry-container'>
+      <template v-if='prevEntryUrl'>
+        <Prev :prevEntryUrl='prevEntryUrl'/>
+      </template>
+      <div class='entry'>
+        <div class='header'>
+          <h1>{{ entryName }}</h1>
+          <template v-if='restaurantUrl'>
+            <h3><a target='_blank' :href='restaurantUrl'>@{{ restaurantName }}</a> in {{ city }}, {{ state }} on {{ entryDate }}</h3>
+          </template>
+          <template v-else>
+            <h3>@{{ restaurantName }} in {{ city }}, {{ state }} on {{ entryDate }}</h3>
+          </template>
+        </div>
+        <div class='description-container'>
+          <div class='image-column'>
+            <div class='image-container'>
+              <img class='image' :src='picture'>
+            </div>
+          </div>
+          <div class='description-column'>
+            <Rating :rating='rating'></Rating>
+            <p><strong>Broth ({{ brothRating }}):</strong> {{ broth }}</p>
+            <p><strong>Noodles ({{ noodlesRating }}):</strong> {{ noodles }}</p>
+            <p><strong>Toppings ({{ toppingsRating }}):</strong> {{ toppings }}</p>
           </div>
         </div>
-        <div class='description-column'>
-          <Rating :rating='rating'></Rating>
-          <p><strong>Broth ({{ brothRating }}):</strong> {{ broth }}</p>
-          <p><strong>Noodles ({{ noodlesRating }}):</strong> {{ noodles }}</p>
-          <p><strong>Toppings ({{ toppingsRating }}):</strong> {{ toppings }}</p>
+        <div class='notes'>
+          <p>{{ notes }}</p>
         </div>
       </div>
-      <div class='notes'>
-        <p>{{ notes }}</p>
-      </div>
+      <template v-if='nextEntryUrl'> 
+        <Next :nextEntryUrl='nextEntryUrl'/>
+      </template>
     </div>
-    <template v-if='nextEntryUrl'> 
-      <Next :nextEntryUrl='nextEntryUrl'/>
-    </template>
   </div>
 </template>
 
@@ -162,55 +164,62 @@ export default {
   width: 100%;
   z-index: 2;
 
-  .entry {
-    background-color: #EDEDED;
-    border-radius: 6px;
-    margin: 20px auto 0 auto;
-    padding: 40px 80px;
-    width: 920px;
+  .entry-container {
+    text-align: center;
+    width: 100%;
 
-    .header h1 {
-      margin-top: 0;
-    }
+    .entry {
+      background-color: #EDEDED;
+      border-radius: 6px;
+      display: inline-block;
+      margin-top: 20px;
+      padding: 40px 80px;
+      text-align: left;
+      width: 920px;
 
-    .description-container {
-      min-height: 340px;
+      .header h1 {
+        margin-top: 0;
+      }
 
-      .image-column {
-        float: left;
-        width: 65%;
+      .description-container {
+        min-height: 340px;
 
-        .image-container {
-          background-color: #FFFFFF;
-          height: 340px;
-          padding: 20px;
-          width: 440px;
+        .image-column {
+          float: left;
+          width: 65%;
 
-          .image {
-            height: 300px;
-            width: 400px;
+          .image-container {
+            background-color: #FFFFFF;
+            height: 340px;
+            padding: 20px;
+            width: 440px;
+
+            .image {
+              height: 300px;
+              width: 400px;
+            }
           }
+        }
+
+        .description-column {
+          box-sizing: content-box;
+          padding-left: 65%;
+          width: 35%;
         }
       }
 
-      .description-column {
-        box-sizing: content-box;
-        padding-left: 65%;
-        width: 35%;
+      .notes {
+        border-top-style: solid;
+        border-top-width: 1px;
+        margin-top: 30px;
       }
-    }
-
-    .notes {
-      border-top-style: solid;
-      border-top-width: 1px;
-      margin-top: 30px;
     }
   }
 }
 
 // TODO - adjust this media query
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
-  .overlay .entry {
+  .overlay .entry-container .entry {
     border-radius: 0;
     margin: 0;
     padding: 3.5%;

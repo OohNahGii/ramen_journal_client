@@ -20,6 +20,8 @@ export default {
 
 <style lang='scss'>
 .next {
+  display: inline-block;
+  margin-left: 30px;
   z-index: 3;
 
   .next-icon {

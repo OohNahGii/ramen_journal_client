@@ -20,6 +20,8 @@ export default {
 
 <style lang='scss'>
 .prev {
+  display: inline-block;
+  margin-right: 30px;
   z-index: 3;
 
   .prev-icon {
