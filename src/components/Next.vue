@@ -1,6 +1,6 @@
 <template>
-  <router-link id='next' :to='nextEntryUrl'>
-    <svg id='next-icon' viewBox="0 0 30 40">
+  <router-link class='next' :to='nextEntryUrl'>
+    <svg class='next-icon' viewBox="0 0 30 40">
       <path d="M0.952,39.01c0,0 22.755,-15.434 27.241,-18.476c0.171,-0.117 0.274,-0.31 0.274,-0.517c0,-0.208 -0.103,-0.401 -0.275,-0.517c-4.493,-3.044 -27.306,-18.497 -27.306,-18.497"/>
     </svg>
   </router-link>
@@ -19,10 +19,10 @@ export default {
 </script>
 
 <style lang='scss'>
-#next {
+.next {
   z-index: 3;
 
-  #next-icon {
+  .next-icon {
     clip-rule: evenodd;
     fill-rule: evenodd;
     height: 40px;
@@ -40,7 +40,7 @@ export default {
 }
 
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
-  #next {
+  .next {
     display: none;
   }
 }

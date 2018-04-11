@@ -4,7 +4,7 @@
     <template v-if='prevEntryUrl'>
       <Prev :prevEntryUrl='prevEntryUrl'/>
     </template>  
-    <div class='overlay_content'>
+    <div class='entry'>
       <div class='header'>
         <h1>{{ entryName }}</h1>
         <template v-if='restaurantUrl'>
@@ -14,13 +14,13 @@
           <h3>@{{ restaurantName }} in {{ city }}, {{ state }} on {{ entryDate }}</h3>
         </template>
       </div>
-      <div class='description_container'>
-        <div class='image_column'>
-          <div class='image_container'>
+      <div class='description-container'>
+        <div class='image-column'>
+          <div class='image-container'>
             <img class='image' :src='picture'>
           </div>
         </div>
-        <div class='description_column'>
+        <div class='description-column'>
           <Rating :rating='rating'></Rating>
           <p><strong>Broth ({{ brothRating }}):</strong> {{ broth }}</p>
           <p><strong>Noodles ({{ noodlesRating }}):</strong> {{ noodles }}</p>
@@ -162,7 +162,7 @@ export default {
   width: 100%;
   z-index: 2;
 
-  .overlay_content {
+  .entry {
     background-color: #EDEDED;
     border-radius: 6px;
     margin: 20px auto 0 auto;
@@ -173,14 +173,14 @@ export default {
       margin-top: 0;
     }
 
-    .description_container {
+    .description-container {
       min-height: 340px;
 
-      .image_column {
+      .image-column {
         float: left;
         width: 65%;
 
-        .image_container {
+        .image-container {
           background-color: #FFFFFF;
           height: 340px;
           padding: 20px;
@@ -193,7 +193,7 @@ export default {
         }
       }
 
-      .description_column {
+      .description-column {
         box-sizing: content-box;
         padding-left: 65%;
         width: 35%;
@@ -210,20 +210,20 @@ export default {
 
 // TODO - adjust this media query
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
-  .overlay .overlay_content {
+  .overlay .entry {
     border-radius: 0;
     margin: 0;
     padding: 3.5%;
     width: 100%;
 
-    .description_container {
+    .description-container {
       min-height: unset;
 
-      .image_column {
+      .image-column {
         float: none;
         width: 100%;
 
-        .image_container {
+        .image-container {
           height: 0;
           margin-left: -3.5%;
           padding: 0 0 75% 0;
@@ -237,7 +237,7 @@ export default {
         }
       }
 
-      .description_column {
+      .description-column {
         box-sizing: border-box;
         margin-top: 20px;
         padding: 0;

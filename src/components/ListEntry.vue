@@ -1,6 +1,6 @@
 <template>
-  <div class='list_entry' :class='dynamicListEntryClasses'>
-    <div class='image_container'>
+  <div class='list-entry' :class='dynamicListEntryClasses'>
+    <div class='image-container'>
       <router-link :to='entry_url'><img class='image' :src='picture'></router-link>
     </div>
     <template v-if='restaurant_url'>
@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import VueRouter from 'vue-router';
-
 export default {
   name: 'ListEntry',
   props: {
@@ -58,13 +56,13 @@ export default {
 </script>
 
 <style lang='scss'>
-.list_entry {
+.list-entry {
   background-color: #FFFFFF;
   height: 210px;
   margin: 0 10px 20px 10px;
   width: 220px;
 
-  .image_container {
+  .image-container {
     padding: 10px 10px 0 10px;
 
     .image {
@@ -84,13 +82,13 @@ export default {
 
 // TODO - adjust this media query
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
-  .list_entry {
+  .list-entry {
     height: auto;
     margin: 0 0 5% 0;
     padding: 5px;
     width: 47.5%;
 
-    .image_container {
+    .image-container {
       height: 0;
       overflow: hidden;
       padding: 0 0 75% 0;
@@ -107,7 +105,7 @@ export default {
     }
   }
 
-  .list_entry.left {
+  .list-entry.left {
     margin-right: 5%;
   }
 }

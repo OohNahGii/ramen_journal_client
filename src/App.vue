@@ -1,7 +1,7 @@
 <template>
   <div id='app'>
-    <div id='content_container'>
-      <div id='entries_container'>
+    <div class='content'>
+      <div class='entries'>
         <template v-if='entries.length'></template>
         <template v-for='(list_entry, index) in entries'>
           <ListEntry
@@ -21,7 +21,6 @@
 </template>
 
 <script>
-import VueRouter from 'vue-router';
 import ListEntry from './components/ListEntry';
 
 export default {
@@ -71,10 +70,10 @@ body {
   margin: 0;
 }
 
-#content_container {
+.content {
   padding: 30px;
 
-  #entries_container {
+  .entries {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; // Not ideal...but it'll work for now
@@ -83,10 +82,10 @@ body {
 
 // TODO - adjust this media query
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
-  #content_container {
+  .content {
     padding: 3.5%;
 
-    #entries_container {
+    .entries {
       justify-content: flex-start;
     }
   }

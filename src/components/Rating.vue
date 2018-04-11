@@ -1,33 +1,36 @@
 <template>
   <div class='rating'>
-    <!-- https://codepen.io/brianknapp/pen/JEotD/ -->
-    <!-- TODO fill based on rating -->
-    <svg height="25" width="23" class="star">
-      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"/>
-    </svg>
-    <svg height="25" width="23" class="star">
-      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"/>
-    </svg>
-    <svg height="25" width="23" class="star">
-      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"/>
-    </svg>
-    <svg height="25" width="23" class="star">
-      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"/>
-    </svg>
-    <svg height="25" width="23" class="star unfill">
-      <polygon points="9.9, 1.1, 3.3, 21.78, 19.8, 8.58, 0, 8.58, 16.5, 21.78"/>
-    </svg>
+    <template v-for='count in 5'>
+      <Star :percentage='calculatePercentage(count)'/>
+    </template>
     <h3 class='overall_rating'>{{ rating }}</h3>
   </div>
 </template>
 
 <script>
+import Star from './Star';
+
 export default {
   name: 'Rating',
+  components: {
+    Star
+  },
   props: {
     rating: {
       type: Number,
       default: 0
+    }
+  },
+  methods: {
+    calculatePercentage: function (count) {
+      const remainder = this.rating - (count - 1);
+      if (remainder < 0) {
+        return 0;
+      } else if (remainder > 1) {
+        return 100;
+      } else {
+        return  Math.ceil((remainder * 100) / 10) * 10;
+      }
     }
   }
 }
@@ -37,10 +40,6 @@ export default {
 .rating {
   align-items: center;
   display: flex;
-}
-
-.unfill polygon {
-  fill: #D7D7D7;
 }
 
 .overall_rating {
