@@ -25,7 +25,7 @@ const store = new Vuex.Store({
       return null;
     },
     getNextEntryId: state => {
-      if (!isNaN(state.currentIndex) && state.entries.length && state.currentIndex + 1 <= state.entries.length) {
+      if (!isNaN(state.currentIndex) && state.entries.length && state.currentIndex + 1 < state.entries.length) {
         return state.entries[state.currentIndex + 1].entry_id;
       }
       return null;
