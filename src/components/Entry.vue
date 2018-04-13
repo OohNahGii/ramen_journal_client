@@ -18,7 +18,7 @@
         <div class='description-container'>
           <div class='image-column'>
             <div class='image-container'>
-              <img class='image' :src='picture'>
+              <img class='image' src='../assets/ramen.jpg'> <!-- replace with picture url -->
             </div>
           </div>
           <div class='description-column'>

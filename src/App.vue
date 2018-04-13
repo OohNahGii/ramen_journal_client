@@ -1,5 +1,8 @@
 <template>
   <div id='app'>
+    <header>
+      <img src='./assets/header.png'/>
+    </header>
     <div class='content'>
       <div class='entries'>
         <template v-if='entries.length'></template>
@@ -57,6 +60,9 @@ export default {
 </script>
 
 <style lang='scss'>
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 html {
   box-sizing: border-box;
 }
@@ -67,7 +73,22 @@ html {
 
 body {
   background-color: #EDEDED;
+  color: #333333;
+  font-family: 'Source Sans Pro', sans-serif;
   margin: 0;
+}
+
+h1 {
+  font-family: 'Oxygen', sans-serif;
+}
+
+header {
+  align-items: center;
+  background-color: #FFFFFF;
+  display: flex;
+  height: 80px;
+  justify-content: center;
+  width: 100%;
 }
 
 .content {
@@ -82,6 +103,15 @@ body {
 
 // TODO - adjust this media query
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {
+  header {
+    height: 60px;
+
+    img {
+      max-width: 65%;
+      height: auto;
+    }
+  }
+
   .content {
     padding: 3.5%;
 

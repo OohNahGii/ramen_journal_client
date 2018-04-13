@@ -1,7 +1,7 @@
 <template>
   <div class='list-entry' :class='dynamicListEntryClasses'>
     <div class='image-container'>
-      <router-link :to='entry_url'><img class='image' :src='picture'></router-link>
+      <router-link :to='entry_url'><img class='image' src='../assets/ramen.jpg'></router-link> <!-- replace with picture url -->
     </div>
     <template v-if='restaurant_url'>
       <p class='title'>{{ entry_name }} <a class='website' target='_blank' :href='restaurant_url'>@{{ restaurant_name }}</a></p>
@@ -73,7 +73,7 @@ export default {
 
   .title {
     margin: 0;
-    padding: 5px;
+    padding: 0 5px 5px 5px;
     text-align: center;
     text-overflow: ellipsis;
     width: 100%;
