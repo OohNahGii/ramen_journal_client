@@ -1,5 +1,5 @@
 <template>
-  <router-link class='next' :to='nextEntryUrl'>
+  <router-link class='next' :class='dynamicNextClasses' :to='nextEntryUrl'>
     <svg class='next-icon' viewBox="0 0 30 40">
       <path d="M0.952,39.01c0,0 22.755,-15.434 27.241,-18.476c0.171,-0.117 0.274,-0.31 0.274,-0.517c0,-0.208 -0.103,-0.401 -0.275,-0.517c-4.493,-3.044 -27.306,-18.497 -27.306,-18.497"/>
     </svg>
@@ -14,6 +14,13 @@ export default {
       type: String,
       required: true
     }
+  },
+  computed: {
+    dynamicNextClasses: function () {
+      return {
+        hidden: this.nextEntryUrl == '#'
+      }
+    }
   }
 }
 </script>
@@ -22,8 +29,8 @@ export default {
 .next {
   display: inline-block;
   height: 600px;
-  margin: 20px 0 0 30px;
-  padding: 330px 0 330px 0;
+  margin: 20px 0 0 0;
+  padding: 330px 30px 330px 30px;
   vertical-align: top;
   z-index: 3;
 
@@ -42,6 +49,10 @@ export default {
       stroke-width: 4px;
     }
   }
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 @media only screen and (min-device-width: 219px) and (max-device-width: 735px) {

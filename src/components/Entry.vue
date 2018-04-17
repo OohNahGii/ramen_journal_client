@@ -2,9 +2,7 @@
   <div class='overlay'>
     <Close/>
     <div class='entry-container'>
-      <template v-if='prevEntryUrl'>
-        <Prev :prevEntryUrl='prevEntryUrl'/>
-      </template>
+      <Prev :prevEntryUrl='prevEntryUrl'/>
       <div class='entry'>
         <div class='header'>
           <h1>{{ entryName }}</h1>
@@ -34,9 +32,7 @@
           </p>
         </div>
       </div>
-      <template v-if='nextEntryUrl'> 
-        <Next :nextEntryUrl='nextEntryUrl'/>
-      </template>
+      <Next :nextEntryUrl='nextEntryUrl'/>
     </div>
   </div>
 </template>
@@ -79,11 +75,11 @@ export default {
   computed: {
     prevEntryUrl() {
       const prevEntryId = this.$store.getters.getPrevEntryId;
-      return prevEntryId == null ? null : '/' + prevEntryId;
+      return prevEntryId == null ? '#' : '/' + prevEntryId;
     },
     nextEntryUrl() {
       const nextEntryId = this.$store.getters.getNextEntryId;
-      return nextEntryId == null ? null : '/' + nextEntryId;
+      return nextEntryId == null ? '#' : '/' + nextEntryId;
     }
   },
   beforeRouteEnter(to, from, next) {
