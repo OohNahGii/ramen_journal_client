@@ -21,7 +21,10 @@ export default {
 <style lang='scss'>
 .prev {
   display: inline-block;
-  margin-right: 30px;
+  height: 600px;
+  margin: 20px 30px 0 0;
+  padding: 330px 0 330px 0;
+  vertical-align: top;
   z-index: 3;
 
   .prev-icon {

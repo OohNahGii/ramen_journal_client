@@ -21,7 +21,10 @@ export default {
 <style lang='scss'>
 .next {
   display: inline-block;
-  margin-left: 30px;
+  height: 600px;
+  margin: 20px 0 0 30px;
+  padding: 330px 0 330px 0;
+  vertical-align: top;
   z-index: 3;
 
   .next-icon {
