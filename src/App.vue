@@ -5,18 +5,19 @@
     </header>
     <div class='content'>
       <div class='entries'>
-        <template v-if='entries.length'></template>
-        <template v-for='(list_entry, index) in entries'>
-          <ListEntry
-            :index=index
-            :entry_id='list_entry.entry_id'
-            :entry_name='list_entry.entry_name'
-            :entry_url='list_entry.entry_url'
-            :picture='list_entry.picture'
-            :restaurant_name='list_entry.restaurant_name'
-            :restaurant_url='list_entry.restaurant_url'
-          ></ListEntry>
-        </template>
+        <ul>
+          <template v-for='(list_entry, index) in entries'>
+            <ListEntry
+              :index=index
+              :entry_id='list_entry.entry_id'
+              :entry_name='list_entry.entry_name'
+              :entry_url='list_entry.entry_url'
+              :picture='list_entry.picture'
+              :restaurant_name='list_entry.restaurant_name'
+              :restaurant_url='list_entry.restaurant_url'
+            ></ListEntry>
+          </template>
+        </ul>
       </div>
     </div>
     <router-view/>
@@ -91,10 +92,11 @@ header {
 .content {
   padding: 30px;
 
-  .entries {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center; // Not ideal...but it'll work for now
+  .entries ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
   }
 }
 

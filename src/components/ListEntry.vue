@@ -1,5 +1,5 @@
 <template>
-  <div class='list-entry' :class='dynamicListEntryClasses'>
+  <li class='list-entry' :class='dynamicListEntryClasses'>
     <div class='image-container'>
       <router-link :to='entry_url'><img class='image' src='../assets/ramen.jpg'></router-link> <!-- replace with picture url -->
     </div>
@@ -9,7 +9,7 @@
     <template v-else>
       <p class='title'>{{ entry_name }} @{{ restaurant_name }}</p>
     </template>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -58,6 +58,7 @@ export default {
 <style lang='scss'>
 .list-entry {
   background-color: #FFFFFF;
+  display: inline-block;
   height: 210px;
   margin: 0 10px 20px 10px;
   width: 220px;
