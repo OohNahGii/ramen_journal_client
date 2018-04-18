@@ -16,7 +16,7 @@
         <div class='description-container'>
           <div class='image-column'>
             <div class='image-container'>
-              <img class='image' src='../assets/ramen.jpg'> <!-- replace with picture url -->
+              <img class='image' src='../assets/ramen.jpg'> <!-- replace with image url -->
             </div>
           </div>
           <div class='description-column'>
@@ -118,7 +118,7 @@ export default {
       this.city = json.city;
       this.state = json.state;
       this.entryDate = json.entry_date;
-      this.picture = json.picture;
+      this.image = json.image;
       this.rating = json.rating;
       this.broth = json.broth;
       this.brothRating = json.broth_rating;
@@ -135,7 +135,7 @@ export default {
       this.city = null;
       this.state = null;
       this.entryDate = null;
-      this.picture = null;
+      this.image = null;
       this.rating = null;
       this.broth = null;
       this.brothRating = null;

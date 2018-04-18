@@ -32,11 +32,6 @@ export default {
   components: {
     ListEntry
   },
-  data () {
-    return {
-      nextPage: 1
-    }
-  },
   computed: {
     entries() {
       return this.$store.state.entries;
@@ -44,13 +39,12 @@ export default {
   },
   methods: {
     fetchNextPage() {
-      fetch('http://localhost:3000/entries?page=' + this.nextPage)
+      fetch('http://localhost:3000/entries')
         .then(response => {
           return response.json()
         })
         .then(json => {
           this.$store.commit('addEntries', json);
-          this.nextPage = this.nextPage + 1;
         });
     }
   },

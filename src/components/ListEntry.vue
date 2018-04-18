@@ -1,7 +1,7 @@
 <template>
   <li class='list-entry' :class='dynamicListEntryClasses'>
     <div class='image-container'>
-      <router-link :to='entry_url'><img class='image' src='../assets/ramen.jpg'></router-link> <!-- replace with picture url -->
+      <router-link :to='entry_url'><img class='image' src='../assets/ramen.jpg'></router-link> <!-- replace with image url -->
     </div>
     <template v-if='restaurant_url'>
       <p class='title'>{{ entry_name }} <a class='website' target='_blank' :href='restaurant_url'>@{{ restaurant_name }}</a></p>
@@ -32,7 +32,7 @@ export default {
       type: String,
       required: true
     },
-    picture: {
+    image: {
       type: String,
       required: true
     },
