@@ -61,6 +61,7 @@ export default {
   display: inline-block;
   height: 210px;
   margin: 0 10px 20px 10px;
+  vertical-align: top;
   width: 220px;
 
   .image-container {

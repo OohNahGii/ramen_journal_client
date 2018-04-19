@@ -12,7 +12,7 @@
               :entry_id='list_entry.entry_id'
               :entry_name='list_entry.entry_name'
               :entry_url='list_entry.entry_url'
-              :picture='list_entry.picture'
+              :image='list_entry.image'
               :restaurant_name='list_entry.restaurant_name'
               :restaurant_url='list_entry.restaurant_url'
             ></ListEntry>
