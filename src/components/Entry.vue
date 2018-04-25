@@ -207,8 +207,7 @@ export default {
       }
 
       .notes {
-        border-top-style: solid;
-        border-top-width: 1px;
+        border-top: 1px solid;
         margin-top: 30px;
       }
     }

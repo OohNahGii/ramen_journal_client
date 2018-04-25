@@ -1,7 +1,7 @@
 <template>
   <router-link class='prev' :class='dynamicPrevClasses' :to='prevEntryUrl'>
     <svg class='prev-icon' viewBox="0 0 30 40">
-      <path d="M28.909,0.995c0,0 -22.763,15.422 -27.25,18.462c-0.172,0.116 -0.274,0.31 -0.275,0.517c0,0.207 0.103,0.401 0.274,0.517c4.492,3.046 27.297,18.511 27.297,18.511"/>
+      <path d="M28.909,0.995c0,0 -22.763,15.422 -27.25,18.462c-0.172,0.116 -0.274,0.31 -0.275,0.517c0,0.207 0.103,0.401 0.274,0.517c4.492,3.046 27.297,18.511 27.297,18.511"></path>
     </svg>
   </router-link>
 </template>
@@ -18,7 +18,7 @@ export default {
   computed: {
     dynamicPrevClasses: function () {
       return {
-        hidden: this.prevEntryUrl == '#'
+        hidden: this.prevEntryUrl === '#'
       }
     }
   }

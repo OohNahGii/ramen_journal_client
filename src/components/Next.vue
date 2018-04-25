@@ -1,7 +1,7 @@
 <template>
   <router-link class='next' :class='dynamicNextClasses' :to='nextEntryUrl'>
     <svg class='next-icon' viewBox="0 0 30 40">
-      <path d="M0.952,39.01c0,0 22.755,-15.434 27.241,-18.476c0.171,-0.117 0.274,-0.31 0.274,-0.517c0,-0.208 -0.103,-0.401 -0.275,-0.517c-4.493,-3.044 -27.306,-18.497 -27.306,-18.497"/>
+      <path d="M0.952,39.01c0,0 22.755,-15.434 27.241,-18.476c0.171,-0.117 0.274,-0.31 0.274,-0.517c0,-0.208 -0.103,-0.401 -0.275,-0.517c-4.493,-3.044 -27.306,-18.497 -27.306,-18.497"></path>
     </svg>
   </router-link>
 </template>
@@ -18,7 +18,7 @@ export default {
   computed: {
     dynamicNextClasses: function () {
       return {
-        hidden: this.nextEntryUrl == '#'
+        hidden: this.nextEntryUrl === '#'
       }
     }
   }

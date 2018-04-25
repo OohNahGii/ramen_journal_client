@@ -48,7 +48,7 @@ export default {
   computed: {
     dynamicListEntryClasses: function () {
       return {
-        left: this.index % 2 == 0
+        left: this.index % 2 === 0
       };
     }
   }

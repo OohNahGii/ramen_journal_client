@@ -1,8 +1,8 @@
 <template>
   <router-link class='close' to='/'>
     <svg class='close-icon' viewBox="0 0 40 40">
-      <path d="M1,1l38.003,38"/>
-      <path d="M1,39l38,-38"/>
+      <path d="M1,1l38.003,38"></path>
+      <path d="M1,39l38,-38"></path>
     </svg>
   </router-link>
 </template>
