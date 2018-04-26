@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import Entries from './services/Entries';
 import ListEntry from './components/ListEntry';
 
 export default {
@@ -38,18 +39,13 @@ export default {
     }
   },
   methods: {
-    fetchNextPage() {
-      fetch('http://localhost:3000/entries')
-        .then(response => {
-          return response.json()
-        })
-        .then(json => {
-          this.$store.commit('addEntries', json);
-        });
+    async fetchEntries() {
+      const entries = await Entries.getEntries();
+      this.$store.commit('addEntries', entries);
     }
   },
   created() {
-    this.fetchNextPage();
+    this.fetchEntries();
   }
 }
 </script>

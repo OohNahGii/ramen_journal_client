@@ -39,11 +39,10 @@
 
 <script>
 import Close from './Close';
+import Entries from '../services/Entries';
 import Next from './Next';
 import Prev from './Prev';
 import Rating from './Rating';
-
-const baseUrl = 'http://localhost:3000/entries/';
 
 export default {
   name: 'Entry',
@@ -82,33 +81,21 @@ export default {
       return nextEntryId == null ? '#' : '/' + nextEntryId;
     }
   },
-  beforeRouteEnter(to, from, next) {
+  async beforeRouteEnter(to, from, next) {
     const entryId = to.params.id;
-    const url = baseUrl + entryId;
-    fetch(url)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        next(vm => {
-          vm.$store.commit('setCurrentIndexByEntryId', entryId);
-          vm.setData(json);
-        });
-      });
+    const entry = await Entries.getEntry(entryId);
+    next(vm => {
+      vm.$store.commit('setCurrentIndexByEntryId', entryId);
+      vm.setData(entry);
+    });
   },
-  beforeRouteUpdate(to, from, next) {
+  async beforeRouteUpdate(to, from, next) {
     const entryId = to.params.id;
-    const url = baseUrl + entryId;
     this.clearData();
-    fetch(url)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        this.$store.commit('setCurrentIndexByEntryId', entryId);
-        this.setData(json);
-        next();
-      });
+    const entry = await Entries.getEntry(entryId);
+    this.$store.commit('setCurrentIndexByEntryId', entryId);
+    this.setData(entry);
+    next();
   },
   methods: {
     setData(json) {
