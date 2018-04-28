@@ -15,11 +15,23 @@ export default {
       required: true
     }
   },
+  mounted() {
+    this.$store.subscribeAction((action, state) => {
+      if (action.type === 'rightPress' && !this.isHidden()) {
+        this.$router.push(this.nextEntryUrl);
+      }
+    });
+  },
   computed: {
     dynamicNextClasses: function () {
       return {
-        hidden: this.nextEntryUrl === '#'
+        hidden: this.isHidden()
       }
+    }
+  },
+  methods: {
+    isHidden() {
+      return this.nextEntryUrl === '#';
     }
   }
 }

@@ -40,9 +40,12 @@
 <script>
 import Close from './Close';
 import Entries from '../services/Entries';
+import EventHandler from '../services/EventHandler';
 import Next from './Next';
 import Prev from './Prev';
 import Rating from './Rating';
+
+let keypressHandler = null;
 
 export default {
   name: 'Entry',
@@ -70,6 +73,14 @@ export default {
       toppingsRating: null,
       notes: null
     }
+  },
+  mounted() {
+    keypressHandler = EventHandler.getKeypressHandler(this.$store);
+    window.addEventListener('keyup', keypressHandler);
+  },
+  beforeDestroy() {
+    window.removeEventListener('keyup', keypressHandler);
+    keypressHandler = null;
   },
   computed: {
     prevEntryUrl() {

@@ -15,11 +15,23 @@ export default {
       required: true
     }
   },
+  mounted() {
+    this.$store.subscribeAction((action, state) => {
+      if (action.type === 'leftPress' && !this.isHidden()) {
+        this.$router.push(this.prevEntryUrl);
+      }
+    });
+  },
   computed: {
     dynamicPrevClasses: function () {
       return {
-        hidden: this.prevEntryUrl === '#'
+        hidden: this.isHidden()
       }
+    }
+  },
+  methods: {
+    isHidden() {
+      return this.prevEntryUrl === '#';
     }
   }
 }

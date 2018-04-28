@@ -7,12 +7,25 @@
   </router-link>
 </template>
 
+<script>
+export default {
+  name: 'Close',
+  mounted() {
+    this.$store.subscribeAction((action, state) => {
+      if (action.type === 'escPress') {
+        this.$router.push('/');
+      }
+    });
+  }
+}
+</script>
+
 <style lang='scss'>
 .close {
   position: absolute;
   right: 20px;
   top: 20px;
-  z-index: 3;
+  z-index: 4;
 
   .close-icon {
     clip-rule: evenodd;

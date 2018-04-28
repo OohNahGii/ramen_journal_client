@@ -27,5 +27,16 @@ export default {
         state.currentIndex = index;
       }
     }
+  },
+  actions: {
+    leftPress(context) {
+
+    },
+    rightPress(context) {
+
+    },
+    escPress(context) {
+
+    }
   }
 };
