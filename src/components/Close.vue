@@ -8,14 +8,22 @@
 </template>
 
 <script>
+let unsubscribeEsc = null;
+
 export default {
   name: 'Close',
   mounted() {
-    this.$store.subscribeAction((action, state) => {
+    unsubscribeEsc = this.$store.subscribeAction((action, state) => {
       if (action.type === 'escPress') {
         this.$router.push('/');
       }
     });
+  },
+  beforeDestroy() {
+    if (unsubscribeEsc) {
+      unsubscribeEsc();
+      unsubscribeEsc = null;
+    }
   }
 }
 </script>

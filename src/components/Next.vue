@@ -7,6 +7,8 @@
 </template>
 
 <script>
+let unsubscribeRight = null;
+
 export default {
   name: 'Next',
   props: {
@@ -16,11 +18,17 @@ export default {
     }
   },
   mounted() {
-    this.$store.subscribeAction((action, state) => {
+    unsubscribeRight = this.$store.subscribeAction((action, state) => {
       if (action.type === 'rightPress' && !this.isHidden()) {
         this.$router.push(this.nextEntryUrl);
       }
     });
+  },
+  beforeDestroy() {
+    if (unsubscribeRight) {
+      unsubscribeRight();
+      unsubscribeRight = null;
+    }
   },
   computed: {
     dynamicNextClasses: function () {

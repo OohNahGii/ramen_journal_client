@@ -7,6 +7,8 @@
 </template>
 
 <script>
+let unsubscribeLeft = null;
+
 export default {
   name: 'Prev',
   props: {
@@ -16,11 +18,17 @@ export default {
     }
   },
   mounted() {
-    this.$store.subscribeAction((action, state) => {
+    unsubscribeLeft = this.$store.subscribeAction((action, state) => {
       if (action.type === 'leftPress' && !this.isHidden()) {
         this.$router.push(this.prevEntryUrl);
       }
     });
+  },
+  beforeDestroy() {
+    if (unsubscribeLeft) {
+      unsubscribeLeft();
+      unsubscribeLeft = null;
+    }
   },
   computed: {
     dynamicPrevClasses: function () {
